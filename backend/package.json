@@ -1,0 +1,1 @@
+{"name": "surf-camps-backend", "version": "1.0.0", "scripts": {"start": "node index.js"}, "dependencies": {"express": "^4.17.1", "prisma": "^4.5.0", "jsonwebtoken": "^9.0.0", "bcrypt": "^5.0.1"}}

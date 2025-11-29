@@ -1,0 +1,45 @@
+model User {
+  id       Int     @id @default(cuid())
+  username String   @unique
+  email    String   @unique
+  password String
+  bookings Bookings[]
+}
+
+model SurfCamp {
+  id        Int      @id @default(cuid())
+  name      String
+  location  String
+  description String
+  packages  Packages[]
+  bookings  Bookings[]
+  reviews   Reviews[]
+}
+
+model Package {
+  id         Int     @id @default(cuid())
+  name       String
+  price      Float
+  inclusions String
+  surfCamp   SurfCamp @relation(fields: [surfCampId], references: [id])
+  surfCampId Int
+  bookings   Bookings[]
+}
+
+model Booking {
+  id        Int     @id @default(cuid())
+  surfCamp  SurfCamp @relation(fields: [surfCampId], references: [id])
+  surfCampId Int
+  package   Package @relation(fields: [packageId], references: [id])
+  packageId  Int
+  startDate DateTime
+  endDate   DateTime
+}
+
+model Review {
+  id       Int     @id @default(cuid())
+  surfCamp SurfCamp @relation(fields: [surfCampId], references: [id])
+  surfCampId Int
+  rating   Int
+  review   String
+}
